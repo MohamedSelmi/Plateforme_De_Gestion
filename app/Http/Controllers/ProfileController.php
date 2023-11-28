@@ -14,13 +14,6 @@ class ProfileController extends Controller
      */
     public function store(CreateProfileRequest $request)
     {
-        // $request->validate([
-        //     'experiences' => 'required',
-        //     'competences' => 'required',
-        //     'formations' => 'required',
-        //     'user_id' => 'required| new OneToOneValidationRule'
-        // ]);
-
         $profile = new Profile;
 
         $profile->experiences = $request->input('experiences');

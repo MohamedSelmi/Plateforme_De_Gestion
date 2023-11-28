@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateOfferRequest;
 use App\Models\Offer;
 use App\Models\OfferUser;
 use Illuminate\Http\Request;
@@ -19,14 +20,8 @@ class OfferController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CreateOfferRequest $request)
     {
-        $request->validate([
-            'title' => 'required',
-            'description' => 'required',
-            'deadline' => 'required',
-            'user_id' => 'required'
-        ]);
 
         $offer = new Offer();
 
@@ -44,15 +39,14 @@ class OfferController extends Controller
      */
     public function submitOffer(Request $request)
     {
-        // $request->validate([
-        //     'offer_id ' => 'required',
-        //     'user_id ' => 'required'
-        // ]);
+        $request->validate([
+            'offer_id' => 'required',
+        ]);
 
         $offer = new OfferUser();
 
         $offer->offer_id = $request->input('offer_id');
-        $offer->user_id = $request->input('user_id');
+        $offer->user_id = $request->user()->id;
 
         $offer->save();
 
