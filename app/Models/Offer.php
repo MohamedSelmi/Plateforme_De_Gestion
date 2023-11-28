@@ -9,9 +9,9 @@ class Offer extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'Title',
-        'Description',
-        'Deadline',
+        'title',
+        'description',
+        'deadline',
         'user_id'
     ];
     public function admin()

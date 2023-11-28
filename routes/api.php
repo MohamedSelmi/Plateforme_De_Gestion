@@ -21,17 +21,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
 Route::group(['prefix' => 'auth'], function () {
-    Route::post('login', [AuthController::class, 'login'])->name('login');
+    Route::post('login', [AuthController::class, 'login']);
     Route::post('register', [AuthController::class, 'register']);
-    // Route::post('forgotpassword', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
-    // Route::get('resetpassword', [ForgotPasswordController::class, 'sendResetLink'])->name('password.reset');
-    //  Route::get('/password/reset', 'Auth\ResetPasswordController@showResetForm')->name('password.request');
-    //Route::post('/password/reset', 'ResetPasswordController@reset');
-    //  Route::post('/resetpassword/{token}', 'ResetPasswordController@reset');
-    // Route::post('/resetpassword', [ResetPasswordController::class, 'reset']);
 });
-Route::apiResource('profile', ProfileController::class)->middleware('auth');;
-Route::apiResource('offer', OfferController::class);
-Route::post('submitOffer', [OfferController::class, 'submitOffer']);
+
+Route::group(['middleware' => 'auth:sanctum'], function () {
+    Route::apiResource('profile', ProfileController::class);
+    Route::apiResource('offers', OfferController::class);
+    Route::post('submitOffer', [OfferController::class, 'submitOffer']);
+});

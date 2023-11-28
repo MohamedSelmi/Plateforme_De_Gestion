@@ -20,7 +20,8 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
-        'password','isAdmin'
+        'password',
+        'is_admin'
     ];
 
     /**
@@ -52,7 +53,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(Offer::class);
     }
-    public function submissions(){
+    public function submissions()
+    {
         return $this->belongsToMany(Offer::class);
     }
 }

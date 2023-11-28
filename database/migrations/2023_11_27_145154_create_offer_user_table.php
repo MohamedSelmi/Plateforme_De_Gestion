@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('offer_user', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(User::class);
             $table->foreignIdFor(Offer::class);
+            $table->foreignIdFor(User::class);
             $table->timestamps();
         });
     }
