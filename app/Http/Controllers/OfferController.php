@@ -13,15 +13,7 @@ class OfferController extends Controller
      */
     public function index()
     {
-        return Offer::select('id','Title','Description','Deadline')->get();
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        return Offer::select('id', 'title', 'description', 'deadline')->get();
     }
 
     /**
@@ -29,18 +21,18 @@ class OfferController extends Controller
      */
     public function store(Request $request)
     {
-        // $request->validate([
-        //     'Title' => 'required',
-        //     'Description' => 'required',
-        //     'Deadline ' => 'required',
-        //     'user_id ' => 'required'
-        // ]);
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'deadline' => 'required',
+            'user_id' => 'required'
+        ]);
 
         $offer = new Offer();
 
-        $offer->Title = $request->input('Title');
-        $offer->Description = $request->input('Description');
-        $offer->Deadline = $request->input('Deadline');
+        $offer->title = $request->input('title');
+        $offer->description = $request->input('description');
+        $offer->deadline = $request->input('deadline');
         $offer->user_id = $request->input('user_id');
 
         $offer->save();
@@ -74,14 +66,6 @@ class OfferController extends Controller
     {
         $offerWithCandidates = Offer::with('candidates')->find($offer);
         return  $offerWithCandidates;
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Offer $offer)
-    {
-        //
     }
 
     /**

@@ -14,11 +14,10 @@ return new class extends Migration
     {
         Schema::create('offers', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->string('description');
+            $table->date('deadline');
             $table->foreignIdFor(User::class)->constrained();
-            $table->string('Title');
-            $table->string('Description');
-            $table->string('Deadline');
-
             $table->timestamps();
         });
     }

@@ -2,13 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Commercial;
-use App\Models\Entreprise;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
-use Spatie\Permission\Models\Role;
-use App\Http\Controllers\EntrepriseController;
+
 use Validator;
 
 class AuthController extends Controller
@@ -28,21 +25,19 @@ class AuthController extends Controller
             'name' => 'required|string',
             'email' => 'required|string|unique:users',
             'password' => 'required|string|unique:users',
-            // 'phone' => 'required|string'
         ]);
 
         $user = new User([
             'name'  => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password),
-            // 'phone'  => $request->phone,
         ]);
 
         $user->save();
 
         return response()->json([
             'data' => $user,
-         ]);
+        ]);
     }
 
 

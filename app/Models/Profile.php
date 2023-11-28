@@ -9,9 +9,9 @@ class Profile extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'Experience',
-        'Competences',
-        'Formation',
+        'experiences',
+        'competences',
+        'formations',
         'user_id'
     ];
 

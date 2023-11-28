@@ -14,11 +14,10 @@ return new class extends Migration
     {
         Schema::create('profiles', function (Blueprint $table) {
             $table->id();
+            $table->string('experiences');
+            $table->string('competences');
+            $table->string('formations');
             $table->foreignIdFor(User::class)->constrained();
-
-            $table->string('Experience');
-            $table->string('Competences');
-            $table->string('Formation');
             $table->timestamps();
         });
     }
